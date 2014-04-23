@@ -12,13 +12,13 @@ Requirements
 * `carrier-pigeon`
 * `puppet` (version 2.6.5 and later)
 
-Installation & Usage (with ircreporter class)
+Installation & Usage (with irc class)
 ---------------------------------------------
 
-On your report server (usually your Puppet Master), define the `ircreporter` class in a manifest or
+On your report server (usually your Puppet Master), define the `irc` class in a manifest or
 your ENC with the appropriate parameters:
 
-     class { 'ircreporter':
+     class { 'irc':
        irc_server  => 'irc://puppetbot:password@irc.freenode.net:6667#channel',
        report_url  => 'http://foreman.example.com/hosts/%h/reports/last',
      }

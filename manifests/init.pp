@@ -76,7 +76,7 @@
 #
 # == Sample Usage:
 #
-#    class { 'ircreporter':
+#    class { 'irc':
 #      irc_server  => 'irc://puppetbot:password@irc.freenode.net:6667#channel',
 #      report_url  => 'http://foreman.example.com/hosts/%h/reports/last',
 #    }
@@ -126,13 +126,13 @@ class irc (
   # - $parsed_reports_dir
   # - $report_url
   #
-  file {'ircreporter-yaml-config':
+  file {'irc-yaml-config':
     ensure  => present,
     path    => "${puppet_confdir}/irc.yaml",
     mode    => 0640,
     owner   => $puppet_user,
     group   => 'root',
-    content => template('ircreporter/irc.yaml.erb'),
+    content => template('irc/irc.yaml.erb'),
   }
 
 }
