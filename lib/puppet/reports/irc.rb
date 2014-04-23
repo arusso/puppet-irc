@@ -62,9 +62,12 @@ Puppet::Reports.register_report(:irc) do
         message << CONFIG[:report_url].gsub(/%([#{map.keys}])/) {|s| map[$1].to_s }
       end
 
-      max_attempts = 2
+      max_attempts = CONFIG[:irc_max_attempts]
+      max_attempts ||= 2
+      irc_timeout = CONFIG[:irc_timeout]
+      irc_timeout ||= 8
       begin
-        timeout(8) do
+        timeout(irc_timeout) do
           Puppet.debug "Sending status for #{self.host} to IRC."
           params  = {
             :uri     => CONFIG[:irc_server],

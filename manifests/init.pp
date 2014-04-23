@@ -74,6 +74,15 @@
 #   irc.yaml will be written inside this directory
 #   (default '/etc/puppet')
 #
+# [*irc_timeout*]
+#   (integer) how long (in seconds) to wait while trying to connect and send a
+#   message to the irc server.
+#   (default '8')
+#
+# [*irc_max_attempts*]
+#   (integer)  how many times to retry a connection to the irc server.
+#   (default '2')
+#
 # == Sample Usage:
 #
 #    class { 'irc':
@@ -100,7 +109,9 @@ class irc (
   $parsed_reports_dir = undef,
   $report_url         = undef,
   $puppet_user        = 'puppet',
-  $puppet_confdir     = '/etc/puppet'
+  $puppet_confdir     = '/etc/puppet',
+  $irc_timeout        = undef,
+  $irc_max_attempts   = undef
 ){
 
   validate_string($irc_server)
@@ -125,6 +136,8 @@ class irc (
   # - $github_password
   # - $parsed_reports_dir
   # - $report_url
+  # - $irc_timeout
+  # - $irc_max_attempts
   #
   file {'irc-yaml-config':
     ensure  => present,
